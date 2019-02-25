@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180322115225) do
+ActiveRecord::Schema.define(version: 20190225160621) do
 
   create_table "dayslots", force: :cascade do |t|
     t.integer "week"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20180322115225) do
   create_table "resources_skills", id: false, force: :cascade do |t|
     t.integer "skill_id", null: false
     t.integer "resource_id", null: false
+    t.float "weight"
   end
 
   create_table "schedules", force: :cascade do |t|

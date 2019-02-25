@@ -59,7 +59,10 @@ class ValentinPlanner
       nrp[:features] = release.features.map {|f| self.build_feature(f) }
       nrp[:resources] = release.resources.map do |r|
         { name: r.id.to_s, 
-          skills: r.skills.map {|s| {name: s.id.to_s} },
+          skills: r.skills.map do |s| {
+              s.id.to_s => ResourcesSkill.where(resource_id: r.id, skill_id: s.id).first().weight
+          }
+          end,
           calendar: r.dayslots.map {|d| {id: d.id,
                                          week: d.week,
                                          dayOfWeek: d.dayOfWeek,
@@ -105,7 +108,10 @@ class ValentinPlanner
       nrp[:features] = release.features.map {|f| self.build_feature(f) }
       nrp[:resources] = release.resources.map do |r|
         { name: r.id.to_s,
-          skills: r.skills.map {|s| {name: s.id.to_s} },
+          skills: r.skills.map do |s| {
+              s.id.to_s => ResourcesSkill.where(resourceId: r.id, skillId: s.id).first().weight
+          }
+          end,
           calendar: plan.schedules.where(resource_id: r.id).map {|d| {id: d.id,
                                          week: d.week,
                                          dayOfWeek: d.dayOfWeek,

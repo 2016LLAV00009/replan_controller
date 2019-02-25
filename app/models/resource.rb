@@ -1,7 +1,8 @@
 class Resource < ApplicationRecord
   belongs_to :project
   has_and_belongs_to_many :releases
-  has_and_belongs_to_many :skills
+  has_many :resources_skills
+  has_many :skills, through: :resources_skills
   has_and_belongs_to_many :dayslots
   validates :project_id, presence: true
   

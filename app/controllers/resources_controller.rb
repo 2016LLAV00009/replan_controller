@@ -56,7 +56,14 @@ class ResourcesController < ApplicationController
     params[:_json].each do |s|
         skill = @project.skills.find_by(id: s[:skill_id])
           if skill and not @resource.skills.exists?(id: s[:skill_id])
-            @resource.skills << skill
+            #@resource.skills << skill
+            @resource.save &&
+                @resource.resources_skills.create(:skill => skill, :weight => s[:weight])
+            #product.save && product.collaborators.create(:user => current_user, :is_admin => true)
+            #@resource.save
+            #resources_skill = ResourcesSkill.where("resource_id = ? AND skill_id = ?", 125, s[:skill_id])[0]
+            #resources_skill[:weight] = s[:weight]
+            #resources_skill.save
           end
       end
     render json: @resource
