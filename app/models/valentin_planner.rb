@@ -60,7 +60,8 @@ class ValentinPlanner
       nrp[:resources] = release.resources.map do |r|
         { name: r.id.to_s, 
           skills: r.skills.map do |s| {
-              s.id.to_s => ResourcesSkill.where(resource_id: r.id, skill_id: s.id).first().weight
+              name: s.id.to_s,
+              weight: ResourcesSkill.where(resource_id: r.id, skill_id: s.id).first().weight
           }
           end,
           calendar: r.dayslots.map {|d| {id: d.id,
