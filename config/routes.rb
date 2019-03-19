@@ -29,6 +29,10 @@ Rails.application.routes.draw do
 
   #add_ui_route 'GET', '/projects/{projectId}/releases/{releaseId}/plan', controller_name: 'releases', action_name: 'get_release_plan'
   #add_ui_route 'POST', '/projects/{projectId}/releases/{releaseId}/plan/{planId}/replan', controller_name: 'plan', action_name: 'replan'
+  #
+  #
+  # Stakeholders Recommender methods
+  add_ui_route 'GET', '/projects/{projectId}/resources/{resourceId}/skills', controller_name: 'resources', action_name: 'get_skills_from_resource'
 
   add_ui_route 'GET', '/projects/{projectId}/releases/{releaseId}/plan', controller_name: 'releases', action_name: 'get_release_plans'
   add_ui_route 'GET', '/projects/{projectId}/releases/{releaseId}/plan/{planId}', controller_name: 'releases', action_name: 'get_release_plan_by_id'

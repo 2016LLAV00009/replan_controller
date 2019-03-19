@@ -69,6 +69,10 @@ class ResourcesController < ApplicationController
     render json: @resource
   end
 
+  def get_skills_from_resource
+    render json: ResourcesSkill.where(resource_id: params[:resourceId])
+  end
+  
   def delete_skills_from_resource
     params[:skillId].split(',').each do |i|
         skill = @resource.skills.find_by(id: i)
